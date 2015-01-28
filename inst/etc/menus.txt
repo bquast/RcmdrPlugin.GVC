@@ -1,0 +1,4 @@
+#   type    menu/item       operation/parent  label                               command/menu                activation    install?
+menu        decomprMenu     topMenu           ""                                  ""                          ""            ""
+
+
