@@ -1,0 +1,17 @@
+Package: RcmdrPlugin.decompr
+Type: Package
+Title: GUI for decompr: Global Value Chains Decomposition
+Version: 0.1.0
+Date: 2015-1-28
+Authors@R: person("Bastiaan", "Quast", email = "bquast@gmail.com", role =
+    c("aut", "cre") )
+Maintainer: Bastiaan Quast <bquast@gmail.com>
+Description: An Rcmdr extension to be used with decompr.
+    Two Global Value Chains decompositions are implemented. Firstly,
+    the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross
+    exports into 16 value added components. Secondly, the Leontief decomposition
+    (default) derives the value added origin of exports by country and
+    industry, which is also based on Wang, Wei, and Zhu (2013).
+Depends:
+    R (>= 2.10)
+License: GPL-3

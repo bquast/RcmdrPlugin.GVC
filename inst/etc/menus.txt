@@ -1,4 +1,3 @@
-#   type    menu/item       operation/parent  label                               command/menu                activation    install?
-menu        decomprMenu     topMenu           ""                                  ""                          ""            ""
-
-
+#   type    menu/item           operation/parent  label                               command/menu                activation    install?
+menu        decomprMenu         topMenu           ""                                  ""                          ""            ""
+item        decomprMenu         command           "Create decompr object..."          RcmdrPlugin.decompr.ltv     ""            ""
