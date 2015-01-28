@@ -1,6 +1,6 @@
-Package: RcmdrPlugin.decompr
+Package: RcmdrPlugin.GVC
 Type: Package
-Title: GUI for decompr: Global Value Chains Decomposition
+Title: GUI for Global Value Chains Analysis
 Version: 0.1.0
 Date: 2015-1-28
 Authors@R: person("Bastiaan", "Quast", email = "bquast@gmail.com", role =
