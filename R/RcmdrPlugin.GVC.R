@@ -21,8 +21,12 @@
 }
 
 #' @export
-#' @import Rcmdr
+#' @import Rcmdr decompr
 
-GVC <- function(){
-  1+1
+gvc_decomp <- function(){
+  require(decompr)
+  initializeDialog(title=gettextRcmdr("GVC Decomposition"))
+  OKCancelHelp(helpSubject="decomp")
+  xBox <- variableListBox(top, .numeric, title=gettextRcmdr("intermediate demand") )
+  dialogSuffix(rows=3, columns=2)
 }

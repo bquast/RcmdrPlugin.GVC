@@ -12,5 +12,8 @@ Description: An Rcmdr extension to be used with decompr.
     exports into 16 value added components. Secondly, the Leontief decomposition
     (default) derives the value added origin of exports by country and
     industry, which is also based on Wang, Wei, and Zhu (2013).
+Depends: decompr  (>= 2.0)
 Imports: Rcmdr
 License: GPL-3
+Log-Exceptions:
+Models:

@@ -1,4 +1,4 @@
 # type 	menu/item       operation/parent	label                        	command/menu         	activation 				install?
 menu  gvcMenu   topMenu   ""          ""          ""          ""
-item  gvcMenu   command   "test"      GVC         ""          "packageAvailable('stats')"
+item  gvcMenu   command   "Decomposition"      gvc_decomp         ""          "packageAvailable('decompr')"
 item  topMenu		cascade		"GVC"				gvcMenu			""					""
