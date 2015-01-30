@@ -1,5 +1,3 @@
-#' Interface function for decompositions
-
 # loads Rcmdr library upon being loaded
 # copied for J. Fox's package: RcmdrPlugin.TeachingDemos (version 1.0-7)
 .onAttach <- function(libname, pkgname){
@@ -23,12 +21,8 @@
 }
 
 #' @export
+#' @import Rcmdr
 
-RcmdrPlugin.decompr.ltv <- function(){
-  require(TeachingDemos)
-  use.rgl <- options("Rcmdr")[[1]]$use.rgl
-  if (length(use.rgl) == 0 || use.rgl) require(rgl)
-  rgl.open()
-  rgl.coin()
-  flip.rgl.coin()
+GVC <- function(){
+  1+1
 }

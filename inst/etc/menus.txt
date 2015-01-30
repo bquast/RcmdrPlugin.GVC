@@ -1,3 +1,4 @@
-#   type    menu/item           operation/parent  label                               command/menu                activation    install?
-menu        GVCMenu         topMenu           ""                                  ""                          ""            ""
-item        GVCMenu         command           "Create decompr object..."          RcmdrPlugin.decompr.ltv     ""            ""
+# type 	menu/item       operation/parent	label                        	command/menu         	activation 				install?
+menu  gvcMenu   topMenu   ""          ""          ""          ""
+item  gvcMenu   command   "test"      GVC         ""          "packageAvailable('stats')"
+item  topMenu		cascade		"GVC"				gvcMenu			""					""
