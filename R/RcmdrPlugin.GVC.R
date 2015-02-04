@@ -24,6 +24,7 @@
 #' @import Rcmdr decompr
 
 gvc_decomp <- function(){
+  require(decompr)
   
   defaults <- list (initial.x = NULL, initial.alternative = "two.sided", initial.level = ".95", 
                     initial.mu = "0.0")
@@ -49,7 +50,7 @@ gvc_decomp <- function(){
     tkdestroy(top)
     tkfocus(CommanderWindow())
   }
-  OKCancelHelp(helpSubject = "t.test", reset = "singleSampleTTest", apply = "singleSampleTTest")
+  OKCancelHelp(helpSubject = "decomp", reset = "gvc_decomp")
   optionsFrame <- tkframe(top)
   radioButtons(optionsFrame, name = "alternative", buttons = c("twosided", 
                                                                "less", "greater"), values = c("two.sided", "less", "greater"), 
@@ -78,4 +79,5 @@ gvc_decomp <- function(){
   tkgrid.configure(confidenceField, sticky = "e")
   dialogSuffix()
   
+
 }
