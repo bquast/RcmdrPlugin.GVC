@@ -26,12 +26,14 @@
 gvc_decomp <- function(){
   require(decompr)
   
-  defaults <- list (initial.x = NULL, initial.alternative = "two.sided", initial.level = ".95", 
+  defaults <- list (initial.x = NULL, initial.y = NULL, initial.alternative = "two.sided", initial.level = ".95", 
                     initial.mu = "0.0")
   dialog.values <- getDialog ("singleSampleTTest", defaults)  
-  initializeDialog(title = gettextRcmdr("Single-Sample t-Test"))
-  xBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Variable (pick one)"),
+  initializeDialog(title = gettextRcmdr("GVC Decomposition"))
+  xBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Intermediate Demand"),
                           initialSelection = varPosn(dialog.values$initial.x, "numeric"))
+  yBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Final Demand"),
+                          initialSelection = varPosn(dialog.values$initial.y, "numeric"))
   onOK <- function() {
     x <- getSelection(xBox)
     if (length(x) == 0) {
@@ -66,6 +68,7 @@ gvc_decomp <- function(){
   muVariable <- tclVar(dialog.values$initial.mu)
   muField <- ttkentry(muFrame, width = "8", textvariable = muVariable)
   tkgrid(getFrame(xBox), sticky = "nw")
+  tkgrid(getFrame(yBox), sticky = "nw")
   tkgrid(labelRcmdr(rightFrame, text = ""), sticky = "w")
   tkgrid(labelRcmdr(muFrame, text = gettextRcmdr("Null hypothesis: mu = ")), 
          muField, sticky = "w", padx=c(10, 0))
