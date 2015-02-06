@@ -69,8 +69,7 @@ gvc_decomp <- function(){
                                           initial.level = level, initial.mu = mu))
     closeDialog()
     doItAndPrint(paste("with(", ActiveDataSet (), ", (t.test(", x, 
-                       ", alternative='", alternative, "', mu=", mu, ", conf.level=", 
-                       level, ")))", sep = ""))
+                       ", alternative='", alternative, "'", sep = ""))
     tkdestroy(top)
     tkfocus(CommanderWindow())
   }
