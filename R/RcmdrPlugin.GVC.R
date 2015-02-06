@@ -27,8 +27,7 @@ gvc_decomp <- function(){
   require(decompr)
   
   dataSets <- listDataSets()
-  defaults <- list (initial.x = NULL, initial.y = NULL, initial.alternative = "two.sided", initial.level = ".95", 
-                    initial.mu = "0.0")
+  defaults <- list (initial.x = NULL, initial.y = NULL, initial.method = "two.sided" )
   dialog.values <- getDialog ("gvc_decomp", defaults)  
   initializeDialog(title = gettextRcmdr("GVC Decomposition"))
   xBox <- variableListBox(top, dataSets, title = gettextRcmdr("Intermediate Demand") )
@@ -62,48 +61,31 @@ gvc_decomp <- function(){
       errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for o."))
       return()
     }
-    alternative <- as.character(tclvalue(alternativeVariable))
-    level <- tclvalue(confidenceLevel)
-    mu <- tclvalue(muVariable)
-    putDialog ("gvc_decomp", list (initial.x = x, initial.alternative = alternative, 
-                                          initial.level = level, initial.mu = mu))
+    method <- as.character(tclvalue(methodVariable))
+    putDialog ("gvc_decomp", list (initial.x = x, initial.method = method) )
     closeDialog()
     doItAndPrint(paste("with(", ActiveDataSet (), ", (t.test(", x, 
-                       ", alternative='", alternative, "'", sep = ""))
+                       ", method='", method, "'", sep = ""))
     tkdestroy(top)
     tkfocus(CommanderWindow())
   }
   OKCancelHelp(helpSubject = "decomp", reset = "gvc_decomp")
   optionsFrame <- tkframe(top)
-  radioButtons(optionsFrame, name = "alternative", buttons = c("twosided", 
+  radioButtons(optionsFrame, name = "method", buttons = c("twosided", 
                                                                "less", "greater"), values = c("two.sided", "less", "greater"), 
                labels = gettextRcmdr(c("Leontief", "Wang-Wei-Zhu", 
                                        "Vertical Specialisation")), title = gettextRcmdr("Decomposition method"),
-               initialValue = dialog.values$initial.alternative)
+               initialValue = dialog.values$initial.method)
   rightFrame <- tkframe(optionsFrame)
-  confidenceFrame <- tkframe(rightFrame)
-  confidenceLevel <- tclVar(dialog.values$initial.level)
-  confidenceField <- ttkentry(confidenceFrame, width = "6", 
-                              textvariable = confidenceLevel)
-  muFrame <- tkframe(rightFrame)
-  muVariable <- tclVar(dialog.values$initial.mu)
-  muField <- ttkentry(muFrame, width = "8", textvariable = muVariable)
   tkgrid(getFrame(xBox), sticky = "nw")
   tkgrid(getFrame(yBox), sticky = "nw")
   tkgrid(getFrame(kBox), sticky = "nw")
   tkgrid(getFrame(iBox), sticky = "nw")
   tkgrid(getFrame(oBox), sticky = "nw")
   tkgrid(labelRcmdr(rightFrame, text = ""), sticky = "w")
-  tkgrid(labelRcmdr(muFrame, text = gettextRcmdr("Null hypothesis: mu = ")), 
-         muField, sticky = "w", padx=c(10, 0))
-  tkgrid(muFrame, sticky = "w")
-  tkgrid(labelRcmdr(confidenceFrame, text = gettextRcmdr("Confidence Level: ")), 
-         confidenceField, sticky = "w", padx=c(10, 0))
-  tkgrid(confidenceFrame, sticky = "w")
-  tkgrid(alternativeFrame, rightFrame, sticky = "nw")
+  tkgrid(methodFrame, rightFrame, sticky = "nw")
   tkgrid(optionsFrame, sticky="w")
   tkgrid(buttonsFrame, columnspan = 2, sticky = "w")
-  tkgrid.configure(confidenceField, sticky = "e")
   dialogSuffix()
   
 
