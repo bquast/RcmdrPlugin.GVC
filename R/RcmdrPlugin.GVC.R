@@ -38,8 +38,28 @@ gvc_decomp <- function(){
   oBox <- variableListBox(top, dataSets, title = gettextRcmdr("Final Output") )
   onOK <- function() {
     x <- getSelection(xBox)
+    y <- getSelection(yBox)
+    k <- getSelection(kBox)
+    i <- getSelection(iBox)
+    o <- getSelection(oBox)
     if (length(x) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable."))
+      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for x."))
+      return()
+    }
+    if (length(y) == 0) {
+      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for y."))
+      return()
+    }
+    if (length(k) == 0) {
+      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for k."))
+      return()
+    }
+    if (length(i) == 0) {
+      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for i."))
+      return()
+    }
+    if (length(o) == 0) {
+      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for o."))
       return()
     }
     alternative <- as.character(tclvalue(alternativeVariable))
@@ -58,8 +78,8 @@ gvc_decomp <- function(){
   optionsFrame <- tkframe(top)
   radioButtons(optionsFrame, name = "alternative", buttons = c("twosided", 
                                                                "less", "greater"), values = c("two.sided", "less", "greater"), 
-               labels = gettextRcmdr(c("Population mean != mu0", "Population mean < mu0", 
-                                       "Population mean > mu0")), title = gettextRcmdr("Alternative Hypothesis"),
+               labels = gettextRcmdr(c("Leontief", "Wang-Wei-Zhu", 
+                                       "Vertical Specialisation")), title = gettextRcmdr("Decomposition method"),
                initialValue = dialog.values$initial.alternative)
   rightFrame <- tkframe(optionsFrame)
   confidenceFrame <- tkframe(rightFrame)
