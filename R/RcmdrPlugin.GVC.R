@@ -29,7 +29,7 @@ gvc_decomp <- function(){
   dataSets <- listDataSets()
   defaults <- list (initial.x = NULL, initial.y = NULL, initial.alternative = "two.sided", initial.level = ".95", 
                     initial.mu = "0.0")
-  dialog.values <- getDialog ("singleSampleTTest", defaults)  
+  dialog.values <- getDialog ("gvc_decomp", defaults)  
   initializeDialog(title = gettextRcmdr("GVC Decomposition"))
   xBox <- variableListBox(top, dataSets, title = gettextRcmdr("Intermediate Demand") )
   yBox <- variableListBox(top, dataSets, title = gettextRcmdr("Final Demand") )
@@ -43,29 +43,29 @@ gvc_decomp <- function(){
     i <- getSelection(iBox)
     o <- getSelection(oBox)
     if (length(x) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for x."))
+      errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for x."))
       return()
     }
     if (length(y) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for y."))
+      errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for y."))
       return()
     }
     if (length(k) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for k."))
+      errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for k."))
       return()
     }
     if (length(i) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for i."))
+      errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for i."))
       return()
     }
     if (length(o) == 0) {
-      errorCondition(recall = singleSampleTTest, message = gettextRcmdr("You must select a variable for o."))
+      errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for o."))
       return()
     }
     alternative <- as.character(tclvalue(alternativeVariable))
     level <- tclvalue(confidenceLevel)
     mu <- tclvalue(muVariable)
-    putDialog ("singleSampleTTest", list (initial.x = x, initial.alternative = alternative, 
+    putDialog ("gvc_decomp", list (initial.x = x, initial.alternative = alternative, 
                                           initial.level = level, initial.mu = mu))
     closeDialog()
     doItAndPrint(paste("with(", ActiveDataSet (), ", (t.test(", x, 
