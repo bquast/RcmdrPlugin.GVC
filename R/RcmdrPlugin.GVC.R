@@ -31,9 +31,11 @@ gvc_decomp <- function(){
                     initial.mu = "0.0")
   dialog.values <- getDialog ("singleSampleTTest", defaults)  
   initializeDialog(title = gettextRcmdr("GVC Decomposition"))
-  xBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Intermediate Demand"),
-                          initialSelection = varPosn(dialog.values$initial.x, "numeric"))
+  xBox <- variableListBox(top, dataSets, title = gettextRcmdr("Intermediate Demand") )
   yBox <- variableListBox(top, dataSets, title = gettextRcmdr("Final Demand") )
+  kBox <- variableListBox(top, dataSets, title = gettextRcmdr("Countries / Regions") )
+  iBox <- variableListBox(top, dataSets, title = gettextRcmdr("Industries") )
+  oBox <- variableListBox(top, dataSets, title = gettextRcmdr("Final Output") )
   onOK <- function() {
     x <- getSelection(xBox)
     if (length(x) == 0) {
@@ -69,6 +71,9 @@ gvc_decomp <- function(){
   muField <- ttkentry(muFrame, width = "8", textvariable = muVariable)
   tkgrid(getFrame(xBox), sticky = "nw")
   tkgrid(getFrame(yBox), sticky = "nw")
+  tkgrid(getFrame(kBox), sticky = "nw")
+  tkgrid(getFrame(iBox), sticky = "nw")
+  tkgrid(getFrame(oBox), sticky = "nw")
   tkgrid(labelRcmdr(rightFrame, text = ""), sticky = "w")
   tkgrid(labelRcmdr(muFrame, text = gettextRcmdr("Null hypothesis: mu = ")), 
          muField, sticky = "w", padx=c(10, 0))
