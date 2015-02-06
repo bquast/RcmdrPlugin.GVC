@@ -61,10 +61,15 @@ gvc_decomp <- function(){
       errorCondition(recall = gvc_decomp, message = gettextRcmdr("You must select a variable for o."))
       return()
     }
+    x <- as.matrix(x)
+    y <- as.matrix(y)
+    k <- as.vector(unlist(lapply(k, as.character)))
+    i <- as.vector(unlist(lapply(i, as.character)))
+    o <- as.vector(unlist(o))
     method <- as.character(tclvalue(methodVariable))
     putDialog ("gvc_decomp", list (initial.x = x, initial.method = method) )
     closeDialog()
-    doItAndPrint(paste("decomposition_output <- decomp(", x, ", ", y, ", ", k, ", ", i, ", ", o, ", method='", method, "')", sep = ""))
+    doItAndPrint(paste("decomposition_output <- decomp(x = ", x, ", y = ", y, ", k = ", k, ", i = ", i, ", o = ", o, ", method='", method, "')", sep = ""))
     tkdestroy(top)
     tkfocus(CommanderWindow())
   }
