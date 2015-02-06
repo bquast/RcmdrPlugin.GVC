@@ -64,8 +64,7 @@ gvc_decomp <- function(){
     method <- as.character(tclvalue(methodVariable))
     putDialog ("gvc_decomp", list (initial.x = x, initial.method = method) )
     closeDialog()
-    doItAndPrint(paste("with(", ActiveDataSet (), ", (t.test(", x, 
-                       ", method='", method, "'", sep = ""))
+    doItAndPrint(paste("decomposition_output <- decomp(", x, ", ", y, ", ", k, ", ", i, ", ", o, ", method='", method, "')", sep = ""))
     tkdestroy(top)
     tkfocus(CommanderWindow())
   }
