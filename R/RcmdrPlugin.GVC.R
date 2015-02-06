@@ -27,7 +27,7 @@ gvc_decomp <- function(){
   require(decompr)
   
   dataSets <- listDataSets()
-  defaults <- list (initial.x = NULL, initial.y = NULL, initial.method = "two.sided" )
+  defaults <- list (initial.x = NULL, initial.y = NULL, initial.method = "leontief" )
   dialog.values <- getDialog ("gvc_decomp", defaults)  
   initializeDialog(title = gettextRcmdr("GVC Decomposition"))
   xBox <- variableListBox(top, dataSets, title = gettextRcmdr("Intermediate Demand") )
@@ -71,8 +71,8 @@ gvc_decomp <- function(){
   }
   OKCancelHelp(helpSubject = "decomp", reset = "gvc_decomp")
   optionsFrame <- tkframe(top)
-  radioButtons(optionsFrame, name = "method", buttons = c("twosided", 
-                                                               "less", "greater"), values = c("two.sided", "less", "greater"), 
+  radioButtons(optionsFrame, name = "method", buttons = c("leontief", 
+                                                               "wwz", "vertical_specialisation"), values = c("leontief", "wwz", "vertical_specialisation"), 
                labels = gettextRcmdr(c("Leontief", "Wang-Wei-Zhu", 
                                        "Vertical Specialisation")), title = gettextRcmdr("Decomposition method"),
                initialValue = dialog.values$initial.method)
