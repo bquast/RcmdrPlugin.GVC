@@ -26,14 +26,14 @@
 gvc_decomp <- function(){
   require(decompr)
   
+  dataSets <- listDataSets()
   defaults <- list (initial.x = NULL, initial.y = NULL, initial.alternative = "two.sided", initial.level = ".95", 
                     initial.mu = "0.0")
   dialog.values <- getDialog ("singleSampleTTest", defaults)  
   initializeDialog(title = gettextRcmdr("GVC Decomposition"))
   xBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Intermediate Demand"),
                           initialSelection = varPosn(dialog.values$initial.x, "numeric"))
-  yBox <- variableListBox(top, Numeric(), title = gettextRcmdr("Final Demand"),
-                          initialSelection = varPosn(dialog.values$initial.y, "numeric"))
+  yBox <- variableListBox(top, dataSets, title = gettextRcmdr("Final Demand") )
   onOK <- function() {
     x <- getSelection(xBox)
     if (length(x) == 0) {
